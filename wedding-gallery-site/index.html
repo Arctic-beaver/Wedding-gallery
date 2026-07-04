@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Gallery</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">17 мая 2026</p>
+        <h1>Алиса & Артём</h1>
+        <p class="hero__text">
+          Спасибо, что были рядом с нами в этот день. Здесь можно посмотреть фотографии,
+          скачать понравившиеся кадры или забрать весь архив целиком.
+        </p>
+        <div class="hero__actions">
+          <a class="button button--primary" href="/photos/downloads/wedding-all.zip" download>
+            Скачать все фото
+          </a>
+          <a class="button button--ghost" href="#gallery">
+            Смотреть галерею
+          </a>
+        </div>
+      </div>
+    </header>
+      <section class="gallery-section" id="gallery">
+        <div class="section-title">
+          <p class="eyebrow">Gallery</p>
+        </div>
+
+        <div class="gallery" id="galleryGrid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lightbox__close" id="closeLightbox" type="button" aria-label="Закрыть">
+        ×
+      </button>
+      <button class="lightbox__nav lightbox__nav--prev" id="prevPhoto" type="button" aria-label="Предыдущее фото">
+        ‹
+      </button>
+      <figure class="lightbox__figure">
+        <img id="lightboxImage" src="" alt="" />
+        <figcaption>
+          <span id="lightboxCaption"></span>
+          <a id="lightboxDownload" href="" download>Скачать</a>
+        </figcaption>
+      </figure>
+      <button class="lightbox__nav lightbox__nav--next" id="nextPhoto" type="button" aria-label="Следующее фото">
+        ›
+      </button>
+    </div>
+
+    <script src="./src/photos.js"></script>
+    <script src="./src/main.js"></script>
+  </body>
+</html>
