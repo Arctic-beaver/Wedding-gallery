@@ -3,54 +3,94 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wedding Gallery</title>
+    <meta name="theme-color" content="#17110d" />
+    <meta name="description" content="Свадебная фотогалерея Алисы и Артёма" />
+    <title>Алиса & Артём — свадебная галерея</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
-    <header class="hero">
+    <header class="hero" id="hero">
+      <img class="hero__image" id="heroImage" src="/src/images/heroes/venchanie.webp" alt="" />
       <div class="hero__content">
-        <p class="eyebrow">17 мая 2026</p>
-        <h1>Алиса & Артём</h1>
-        <p class="hero__text">
-          Спасибо, что были рядом с нами в этот день. Здесь можно посмотреть фотографии,
-          скачать понравившиеся кадры или забрать весь архив целиком.
+        <p class="eyebrow" id="heroDate">17 мая 2026</p>
+        <h1>Алиса <span>&</span> Артём</h1>
+        <p class="hero__section-name" id="heroSectionName">Венчание</p>
+        <p class="hero__text" id="heroText">
+          Спасибо, что были рядом с нами. Здесь можно пересмотреть любимые моменты
+          и сохранить фотографии в полном качестве.
         </p>
         <div class="hero__actions">
-          <a class="button button--primary" href="/photos/downloads/wedding-all.zip" download>
-            Скачать все фото
+          <a class="button button--primary" id="sectionDownloadHero" href="#" download>
+            Скачать раздел
           </a>
-          <a class="button button--ghost" href="#gallery">
-            Смотреть галерею
-          </a>
+          <a class="button button--glass" href="#gallery">Смотреть фотографии</a>
         </div>
       </div>
+      <a class="hero__scroll" href="#galleryNav" aria-label="Перейти к выбору раздела">↓</a>
     </header>
-      <section class="gallery-section" id="gallery">
-        <div class="section-title">
-          <p class="eyebrow">Gallery</p>
+
+    <main>
+      <nav class="gallery-nav" id="galleryNav" aria-label="Разделы фотогалереи">
+        <div class="gallery-nav__inner">
+          <div class="tabs" id="sectionTabs" role="tablist" aria-label="Выберите раздел"></div>
+          <a class="button button--compact button--outline" id="downloadAll" href="/photos/downloads/all-photos.zip" download>
+            Скачать все фото
+          </a>
+        </div>
+      </nav>
+
+      <section class="gallery-section" id="gallery" aria-labelledby="galleryTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Фотографии</p>
+            <h2 id="galleryTitle">Венчание</h2>
+            <p class="section-heading__count" id="photoCount"></p>
+          </div>
+          <a class="button button--outline" id="sectionDownloadGallery" href="#" download>
+            Скачать этот раздел
+          </a>
         </div>
 
-        <div class="gallery" id="galleryGrid" aria-live="polite"></div>
+        <div class="gallery-content" id="galleryGrid" aria-live="polite">
+          <section class="photo-group photo-group--featured" id="featuredSection" aria-labelledby="featuredTitle">
+            <div class="photo-group__heading">
+              <p class="eyebrow">Избранные моменты</p>
+            </div>
+            <div class="featured-gallery" id="featuredGallery"></div>
+          </section>
+
+          <section class="photo-group photo-group--rest" id="restSection" aria-labelledby="restTitle">
+            <div class="photo-group__heading photo-group__heading--compact">
+              <div>
+                <p class="eyebrow">Продолжение истории</p>
+              </div>
+              <p id="restCount"></p>
+            </div>
+            <div class="gallery" id="restGallery"></div>
+          </section>
+
+          <div class="empty-state" id="emptyState" hidden>
+            <span class="empty-state__mark">✦</span>
+            <p>Фотографии этого раздела пока не добавлены.</p>
+          </div>
+        </div>
       </section>
     </main>
 
-    <div class="lightbox" id="lightbox" aria-hidden="true">
-      <button class="lightbox__close" id="closeLightbox" type="button" aria-label="Закрыть">
-        ×
-      </button>
-      <button class="lightbox__nav lightbox__nav--prev" id="prevPhoto" type="button" aria-label="Предыдущее фото">
-        ‹
-      </button>
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
+      <button class="lightbox__close" id="closeLightbox" type="button" aria-label="Закрыть">×</button>
+      <button class="lightbox__nav lightbox__nav--prev" id="prevPhoto" type="button" aria-label="Предыдущая фотография">‹</button>
       <figure class="lightbox__figure">
         <img id="lightboxImage" src="" alt="" />
         <figcaption>
           <span id="lightboxCaption"></span>
-          <a id="lightboxDownload" href="" download>Скачать</a>
+          <a id="lightboxDownload" href="" download>Скачать оригинал</a>
         </figcaption>
       </figure>
-      <button class="lightbox__nav lightbox__nav--next" id="nextPhoto" type="button" aria-label="Следующее фото">
-        ›
-      </button>
+      <button class="lightbox__nav lightbox__nav--next" id="nextPhoto" type="button" aria-label="Следующая фотография">›</button>
     </div>
 
     <script src="./src/photos.js"></script>
